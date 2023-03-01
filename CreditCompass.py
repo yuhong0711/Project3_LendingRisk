@@ -152,7 +152,7 @@ if btn_predict:
         quick chat and streamlined credit approval process. Thank you for using Credit Compass!""")
 
     #prepare test set for shap explainability
-    loans = st.cache(pd.read_csv)("input/mycsvfile.csv")
+    loans = st.cache(pd.read_csv)("input/mycsvfile.csv.gz")
     X = loans.drop(columns=['loan_status','home_ownership__ANY','home_ownership__MORTGAGE','home_ownership__NONE','home_ownership__OTHER','home_ownership__OWN',
                    'home_ownership__RENT','addr_state__AK','addr_state__AL','addr_state__AR','addr_state__AZ','addr_state__CA','addr_state__CO','addr_state__CT',
                    'addr_state__DC','addr_state__DE','addr_state__FL','addr_state__GA','addr_state__HI','addr_state__ID','addr_state__IL','addr_state__IN',
