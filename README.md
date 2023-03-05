@@ -28,9 +28,9 @@ Clients also often feel left in the dark when interacting with lenders, and are 
 
 Our project aims to solve the problem of rapidly calculating lending risk by leveraging data science and Machine Learning, all the while closely involving clients in the process. First, we use an open-source data set from Kaggle which contains loan data on Lending Club clients from 2007 through to 2018 as it offers a wealth of information that assists us in establishing a robust machine learning algorithm. Our machine learning model is designed to semi-automate the approval process, optimising the trade-off between revenue that the creditor may generate and losses incured due to borrower default, ultimately minimising much of the risk associated with lending.
 
-We use scikit-learn machine learning packages to generate the predictive algorithm, and couple this back-end with our streamlit front-end for the presentation and demonstration of our product. The lender may then offer this web-based application to their customers so that they may query their own loan suitability, greatly increasing their sense of inclusion in the process. Our goal is to produce a reliable and efficient solution to improve the overall lending process and streamline employee-machine-client interactions to provide transparent insights regarding any one individual's creditworthiness.
+We use scikit-learn machine learning packages to generate the predictive algorithm, and couple this back-end with our streamlit front-end for the presentation and demonstration of our product. The lender may then offer this web-based application to their customers so that they may query their own loan suitability, greatly increasing their sense of inclusion in the process. Our goal is to produce a reliable and efficient solution to improve the overall lending process and streamline employee-machine-client interactions to provide transparent insights regarding any one individual's creditworthiness. <br>
 
-## Mission: Helping customers to learn from their data
+**Mission: Helping customers to learn from their data** <br>
 
 ***The User Interface of the completed web-based application appears as follows:***
 
@@ -70,7 +70,7 @@ Namely, the data set used was a collation of information gathered by a credit in
 #### Pre-processing the Data
 Initially, a seemingly straighforward issue that we encountered was simply the file size of the data set and the fact that it was available as a ```.gz``` file  (gzip), and was therefore compressed. There was some initial difficulty involved in getting the file to read into our jupiter-lab notebook correctly, and after a series of troubleshooting steps over multiple occasions, we were eventually able to render the file readable and begin our data analysis.
 
-*Univariate Data Analysis*
+*Univariate Data Analysis* <br>
 Next, we had to contend with the fact that the data was incomplete with several null values, as well as the data being skewed. Our first step in resolving this was identifying the quantity of null values before removing them from our data. Then, we dealt with the **outliers** in our data set which can significantly distort the feature distribution within our machine learning algorithms (potential candidates at this stage for ML models being Linear Regression, Logistic Regression, a Support Vector Machine, or a Random Forest Machine). We then proceeded to account for these outliers by removing them.
 
 **Identifying the Degree to which the data was skewed:**
@@ -87,9 +87,9 @@ Next, we had to contend with the fact that the data was incomplete with several 
 
 Following this, we ran a report to test for the *skewness* of the data that we had left to work with and found that the remaining features were only moderately skewed. Considering this, we were happy with the data's balance and proceeded making the data readable for a machine learning algorithm.
 
-<img src = "images/skewReport.PNG" width = "150">
+<img src = "images/skewReport.PNG" width = "185">
 
-*Turning Categorical Features into Numerical Values*
+*Turning Categorical Features into Numerical Values* <br>
 At this point there were several features that would be unreadable by any of the machine learning algorithms we had in mind to eventually build our model. We identified that we had both ordinal and non-ordinal categorical features and used ordinal encoding and one-hot-encoder, respectively, to transform these variables into usable numerical values. At this point, pre-processing the data was complete.
 
 #### Building and Training the Machine Learning Models
@@ -99,6 +99,7 @@ The final accuracy score that we were able to achieve for either of these option
 
 #### Building the Streamlit Application
 **Gather Input** <br>
+<br>
 *Main Page* <br>
 Firstly, we set up the main page layout by placing ourselves in the shoes of our potential users and laid out clear instructions on how to use the application, along with an explanation on how the application is able to predict the loan viability of the user. As we are looking to reassure consumers who may otherwise find it frustrating and difficult to deal with the rejection and/or hassle of assessing their own risk profile, or the risk profile a lender may implement to judge whether they are worthy of receiving credit, we sought to reassure users that their credit rating would remain undisturbed, and futhermore, that the process is easy and straightforward.
 
@@ -149,6 +150,8 @@ Additional questions that we could ask if this project ran for a longer period c
 - What effect would decreasing the amount of features in the model have on the model's accuracy?
 - How much value would customer's find in using Credit Compass after trying it and going through the credit procurement process?
 - We don't want to overwhelm or intimidate users with overly technical jargon or guidance. It would be valuable to poll users on how well they were able to decipher the results of the prediction - most importantly, the SHAP value.
+
+---
 
 ### Attribution Statement
 
