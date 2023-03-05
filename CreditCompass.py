@@ -166,18 +166,22 @@ if btn_predict:
 
     X_train, X_test, y_train, y_test = train_test_split(X, y_ravel, test_size=0.25, random_state=42, stratify=y)
 
-    st.subheader('Result Interpretability - Applicant Level')
+    st.subheader('How did my answers affect my prediction?')
     shap.initjs()
     explainer = shap.Explainer(model, X_train)
     shap_values = explainer(user_input)
     fig = shap.plots.bar(shap_values[0])
     st.pyplot(fig)
-    st.write("""#175_pls help interprete the plot""")
+    st.write("""A SHAP value is a measure of how much each of the input fields affected the calculation of the final creditworthiness
+    prediction. You can think of it as a 'weighting' that each of the input fields had on the final result. The more positive the SHAP
+    value, the greater the impact on the final prediction, and the more negative, the more it negatively impacted the final prediction.""")
 
 
-    st.subheader('Model Interpretability - Overall')
+    st.subheader("""A 'Beeswarm' plot showing the SHAP value distribution""")
     shap_values_ttl = explainer(X_test)
     fig_ttl = shap.plots.beeswarm(shap_values_ttl)
     st.pyplot(fig_ttl)
-    st.write(""" This beeswarm plot shows the SHAP values for each feature in the test set (X_test).
+    st.write("""Another way of looking at the effect of input fields on the final prediciton, and therefore the SHAP value, is by what is known as a 'Beeswarm' plot. Here, each dot represents a single row in our machine learning data set. As before, SHAP 
+    values are indicated by the x-axis. The colour of each dot respresents the value that each of the input fields (or features in machine-learning-speak) 
+    had on the prediction of the result. Overall, it provides insight into how the SHAP values are distributed with respect to the input features.
     """)
