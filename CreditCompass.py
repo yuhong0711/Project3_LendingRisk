@@ -151,7 +151,7 @@ if btn_predict:
         st.success("""You are likely to receive credit! Please feel free to reach out to our branch representative for a 
         quick chat and streamlined credit approval process. Thank you for using Credit Compass!""")
 
-    #prepare test set for shap explainability
+    # Prepare the test set for SHAP
     loans = st.cache(pd.read_csv)("input/mycsvfile.csv.gz")
     X = loans.drop(columns=['loan_status','home_ownership__ANY','home_ownership__MORTGAGE','home_ownership__NONE','home_ownership__OTHER','home_ownership__OWN',
                    'home_ownership__RENT','addr_state__AK','addr_state__AL','addr_state__AR','addr_state__AZ','addr_state__CA','addr_state__CO','addr_state__CT',
@@ -166,18 +166,22 @@ if btn_predict:
 
     X_train, X_test, y_train, y_test = train_test_split(X, y_ravel, test_size=0.25, random_state=42, stratify=y)
 
-    st.subheader('Result Interpretability - Applicant Level')
+    st.subheader('How did my answers affect my prediction?')
     shap.initjs()
     explainer = shap.Explainer(model, X_train)
     shap_values = explainer(user_input)
     fig = shap.plots.bar(shap_values[0])
     st.pyplot(fig)
-    st.write("""#175_pls help interprete the plot""")
+    st.write("""A SHAP value is a measure of how much each of the input fields affected the calculation of the final creditworthiness
+    prediction. You can think of it as a 'weighting' that each of the input fields had on the final result. The more positive the SHAP
+    value, the greater the impact on the final prediction, and the more negative, the more it negatively impacted the final prediction.""")
 
 
-    st.subheader('Model Interpretability - Overall')
+    st.subheader("""A 'Beeswarm' plot showing the SHAP value distribution""")
     shap_values_ttl = explainer(X_test)
     fig_ttl = shap.plots.beeswarm(shap_values_ttl)
     st.pyplot(fig_ttl)
-    st.write(""" This beeswarm plot shows the SHAP values for each feature in the test set (X_test).
+    st.write("""Another way of looking at the effect of input fields on the final prediciton, and therefore the SHAP value, is by what is known as a 'Beeswarm' plot. Here, each dot represents a single row in our machine learning data set. As before, SHAP 
+    values are indicated by the x-axis. The colour of each dot respresents the value that each of the input fields (or features in machine-learning-speak) 
+    had on the prediction of the result. Overall, it provides insight into how the SHAP values are distributed with respect to the input features.
     """)
